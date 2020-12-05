@@ -2,7 +2,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     kotlin("jvm") version "1.4.10"
-    id("org.jlleitschuh.gradle.ktlint") version "9.4.1"
+    id("com.diffplug.spotless") version "5.8.2"
     application
 }
 
@@ -13,8 +13,13 @@ repositories {
     mavenCentral()
 }
 
-ktlint {
-    outputToConsole.set(true)
+spotless {
+    kotlin {
+        ktlint().userData(mapOf("end_of_line" to "lf"))
+    }
+    kotlinGradle {
+        ktlint().userData(mapOf("end_of_line" to "lf"))
+    }
 }
 
 dependencies {
