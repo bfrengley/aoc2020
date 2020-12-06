@@ -1,3 +1,4 @@
+import aoc2020.util.asBlocks
 import aoc2020.util.loadTextResource
 
 data class Passport(
@@ -36,8 +37,8 @@ data class Passport(
     fun validate(): Boolean {
         try {
             val datesValid = this.byr.length == 4 && this.byr.toInt() in 1920..2002 &&
-                this.iyr.length == 4 && this.iyr.toInt() in 2010..2020 &&
-                this.eyr.length == 4 && this.eyr.toInt() in 2020..2030
+                    this.iyr.length == 4 && this.iyr.toInt() in 2010..2020 &&
+                    this.eyr.length == 4 && this.eyr.toInt() in 2020..2030
 
             val height = this.hgt.takeWhile { it.isDigit() }.toInt()
             val heightType = this.hgt.dropWhile { it.isDigit() }
@@ -48,7 +49,7 @@ data class Passport(
             }
 
             val hairValid = this.hcl[0] == '#' &&
-                this.hcl.substring(1).all { it in '0'..'9' || it in 'a'..'f' }
+                    this.hcl.substring(1).all { it in '0'..'9' || it in 'a'..'f' }
 
             val eyesValid = this.ecl in setOf("amb", "blu", "brn", "gry", "grn", "hzl", "oth")
             val pidValid = this.pid.length == 9 && this.pid.all { it.isDigit() }
@@ -71,22 +72,8 @@ fun main(args: Array<String>) {
     println(passports.filter { it.validate() }.size)
 }
 
-fun loadPassports(lines: List<String>): List<Passport> {
-    var rest = lines
-    val passports = mutableListOf<Passport>()
-
-    while (rest.isNotEmpty()) {
-        parsePassport(
-            rest
-                .takeWhile { it.isNotEmpty() }
-                .flatMap { it.split(' ') }
-        )?.let { passports.add(it) }
-
-        rest = rest.dropWhile { it.isNotEmpty() }.drop(1)
-    }
-
-    return passports
-}
+fun loadPassports(lines: List<String>) =
+    lines.asBlocks().mapNotNull { block -> parsePassport(block.flatMap { it.split(' ') }) }
 
 fun parsePassport(fields: List<String>) = Passport.tryFrom(
     fields
