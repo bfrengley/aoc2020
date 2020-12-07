@@ -1,3 +1,5 @@
+package aoc2020.day6
+
 import aoc2020.util.asBlocks
 import aoc2020.util.loadTextResource
 

@@ -1,3 +1,5 @@
+package aoc2020.day2
+
 import aoc2020.util.loadTextResource
 
 fun main(args: Array<String>) {
@@ -16,7 +18,7 @@ data class Rule(val letter: Char, val min: Int, val max: Int) {
     fun checkV1(pass: String) = pass.count { it == letter } in min..max
     fun checkV2(pass: String) =
         (pass[min - 1] == letter && pass[max - 1] != letter) ||
-            (pass[max - 1] == letter && pass[min - 1] != letter)
+                (pass[max - 1] == letter && pass[min - 1] != letter)
 }
 
 fun validate(line: String, check: (Rule, String) -> Boolean): Boolean {

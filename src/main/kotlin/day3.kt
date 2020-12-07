@@ -1,3 +1,5 @@
+package aoc2020.day3
+
 import aoc2020.util.loadTextResource
 
 data class Slope(val x: Int, val y: Int)

@@ -1,3 +1,5 @@
+package aoc2020.day5
+
 import aoc2020.util.loadTextResource
 
 fun main(args: Array<String>) {
