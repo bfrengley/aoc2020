@@ -1,7 +1,6 @@
 package aoc2020.day10
 
 import aoc2020.util.*
-import kotlin.math.pow
 
 fun main(args: Array<String>) {
     val vals = listOf(0) + loadTextResource("/day10.txt").lines().map { it.toInt() }.sorted()
