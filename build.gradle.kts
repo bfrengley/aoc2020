@@ -1,7 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "1.4.10"
+    kotlin("jvm") version "1.5.30"
     id("com.diffplug.spotless") version "5.8.2"
     application
 }
@@ -33,9 +33,9 @@ tasks.test {
 }
 
 tasks.withType<KotlinCompile>() {
-    kotlinOptions.jvmTarget = "13"
+    kotlinOptions.jvmTarget = "16"
 }
 
 application {
-    mainClassName = "MainKt"
+    mainClass.set("MainKt")
 }
